@@ -1,0 +1,26 @@
+package com.example.Product.delivery.domain;
+
+
+
+
+
+public enum Permission {
+    USER_READ,
+    PRODUCT_READ,
+    REGION_CREATE,
+    REGION_EDIT,
+    REGION_DELETE,
+    PLACE_CREATE,
+    PLACE_EDIT,
+    PLACE_DELETE,
+    OFFER_READ,
+    REQUEST_READ,
+    TRANSACTION_CREATE,
+    TRANSACTION_READ,
+    TRANSACTION_UPDATE,
+    TRANSACTION_DELETE,
+    STATISTICS
+
+
+}
+
