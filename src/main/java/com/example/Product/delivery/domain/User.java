@@ -12,6 +12,10 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.antlr.v4.runtime.misc.NotNull;
 
 import java.util.HashSet;
@@ -28,19 +32,31 @@ public class User {
 
     @NotNull
     @Column(nullable = false)
+    @NotBlank(message = "Firstname is required")
+    @Pattern(regexp = "^[a-zA-Z]+(\\s[a-zA-Z]+)*$", message = "Firstname must contain only letters")
     private String firstname;
 
     @NotNull
     @Column(nullable = false)
+    @Size(min = 3, message = "Lastname must be at least 3 characters long")
+    @NotBlank(message = "Lastname is required")
+    @Pattern(regexp = "^[a-zA-Z]+(\\s[a-zA-Z]+)*$", message = "Lastname must contain only letters")
     private String lastname;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "Username is required")
+    @Size(min = 3, message = "Username must be at least 3 characters long")
     private String username;
 
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
     private String email;
 
     @Column(nullable = false)
+    @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!#@$*])[A-Za-z\\d!#@$*]+$", message = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character")
     private String password;
 
     @Column(nullable = false)
